@@ -1,0 +1,69 @@
+﻿@model MyFirstProject.Models.News
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4 text-primary">Add News</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Page to add new news</li>
+    </ol>
+    <div class="row">
+        <form id="news-form" class="col-6" enctype="multipart/form-data" asp-controller="News" asp-action="AddNews" method="post">
+            <div class="mb-3">
+                <label for="news-title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="news-title" asp-for="Title" />
+
+                <span asp-validation-for="Title" class="text-danger">  </span>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-6">
+                    <label for="news-date" class="form-label">Date</label>
+                    <input type="date" class="form-control" id="news-date" asp-for="Date" />
+                    <span class="breadcrumb-item active">If not selected, it will be taken as now</span>
+                </div>
+                <div class="col-6">
+                    <label for="news-image" class="form-label">Image</label>
+                    <input type="file" class="form-control-file" id="news-image" asp-for="Image" />
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="news-content" class="form-label">Content</label>
+                <textarea class="form-control" id="news-content" asp-for="Content" rows="4"> </textarea>
+                <small id="count"> </small>
+
+                <span asp-validation-for="Content" class="text-danger">  </span>
+            </div>
+            <div>
+                <button id="submit-btn" type="submit" class="btn btn-primary col-2">Submit</button>
+                <p id="message" class="p-2 text-success fw-bold d-inline">@TempData["Message"]</p>
+
+            </div>
+            <div class="mt-3">
+                <i class="fa-solid fa-arrow-left text-primary"></i>
+                <a href="/Xeberler">Back to All News</a>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    const today = new Date().toISOString().slice(0, 10);
+    document.getElementById("news-date").value = today;
+    
+    const messageElement = document.getElementById("message");
+
+    setTimeout(function () {
+        messageElement.textContent = "";
+    }, 2500);
+
+    const textarea = document.getElementById('news-content');
+    const count = document.getElementById('count');
+
+    textarea.addEventListener('input', function () {
+        count.innerText = this.value.length ? (this.value.length + " characters are written.") : "";
+    });
+
+</script>

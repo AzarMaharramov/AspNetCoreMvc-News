@@ -1,0 +1,41 @@
+﻿@model IQueryable<Customer>
+
+<div class="container-fluid px-4">
+    <h2 class="mt-4">Customers</h2>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active"></li>
+    </ol>
+    <div class="row">
+        <div class="col-8"> 
+            <div class="mt-2">
+                <a href="/Customer/AddCustomer">
+                    <div class="btn btn-success mb-2 col-3"><i class="fa fa-plus"></i> Add Customers </div>
+                </a>
+            </div>
+            <table class="table" border="1">
+                <thead>
+                    <tr>
+                        <th scope="col">№</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Surname</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Telephone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Customer customer in Model)
+                    {
+                        <tr>
+                            <td>@customer.Id</td>
+                            <td>@customer.Name</td>
+                            <td>@customer.Surname</td>
+                            <td>@customer.Email</td>
+                            <td>@customer.Mobile</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</div>

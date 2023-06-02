@@ -1,0 +1,47 @@
+﻿@model IQueryable<News>
+
+<div class="container-fluid px-4">
+    <div class="row">
+        <div class="col-md-3">
+            <h1 class="text-primary mt-4 mb-0">ABC News</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item active">Latest Breaking News and Top Headlines</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        
+        @foreach (News news in Model)
+        {
+            <div class="col-md-3">
+                <div class="card mb-4">
+                    <img src="@news.Image" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <div class="float-none">
+                            <h5 class="card-title float-start">@news.Title</h5>
+                            <h6 class="text-muted float-end">@news.Date.ToShortDateString()</h6>
+                        </div>
+                        <br />
+                        <hr class="d-block" />
+                        <small class="card-text">
+                            @{
+                                if (news.Content.Length > 150)
+                                {
+                                    string sub = news.Content.Substring(0, 150) + "... ";
+                                    @sub;
+                                }
+                                else
+                                    @news.Content
+                            }
+
+                        </small>
+                        <div class="mt-1">
+                            <a href="/Xeber/@news.Id">Read more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
