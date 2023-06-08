@@ -1,4 +1,4 @@
-# AspNetCoreMvc-news
+# AspNetCoreMvc-News
 In this project, it is possible to view general news, read news, and add new news. 
 This project is a project using .NET 6 MVC where it is possible to view general news, read a news (by going to details), add new news. It is possible to add a client and view all clients in a tabular form on an additional page in the project. 
 Validations have been applied to form pages using jquery and fluent validation libraries. 
